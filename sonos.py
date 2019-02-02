@@ -90,7 +90,7 @@ if __name__ == '__main__':
         elif sys.argv[1] == '--play':
             Sonos().play()
         elif sys.argv[1] == '--pause':
-            Sonos().play()
+            Sonos().pause()
         elif sys.argv[1] == '--volume-up':
             Sonos().volume_up()
         elif sys.argv[1] == '--volume-down':
