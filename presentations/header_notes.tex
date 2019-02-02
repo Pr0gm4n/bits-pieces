@@ -1,0 +1,73 @@
+\usepackage[sc]{mathpazo}
+\usepackage[mathscr]{euscript}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+\input{info.tex}
+
+\bibliographystyle{alpha}
+
+% special modifications for using markdown
+\usepackage{multicol}
+\newcommand{\cols}[1][]{\begin{multicols}{2}}
+\newcommand{\colsend}{\end{multicols}}
+\newcommand{\colbreak}{\columnbreak}
+
+\newcommand{\framebreak}{\par. . .\par}
+\newcommand{\framelinebreak}{}
+\newcommand{\notesbreak}{\pagebreak}
+\newcommand{\framerule}{}
+\newcommand{\notesrule}{\vspace{2ex}\hrule\vspace{2ex}}
+
+\newcommand{\overlay}[1][]{}
+\newcommand{\overlayend}{}
+\newcommand{\overlaynext}{\framebreak}
+\newcommand{\visibleoverlay}[1][]{}
+\newcommand{\visibleoverlayend}{}
+\newcommand{\visibleoverlaynext}{\framebreak}
+\newcommand{\visible}[2][]{#2}
+\newcommand{\uncoveroverlay}[1][]{}
+\newcommand{\uncoveroverlayend}{}
+\newcommand{\uncoveroverlaynext}{\framebreak}
+\newcommand{\uncover}[2][]{#2}
+
+\usepackage{mdframed}
+\newcommand{\notesonly}{\begin{mdframed}[backgroundcolor=lightgray]}%\textbf{Notes: }}
+\newcommand{\notesend}{\end{mdframed}}
+\newcommand{\notesonlyraw}[1]{#1}
+\let\hidenotes\iffalse
+\let\hidenotesend\fi
+\newenvironment{block}[1]{\begin{mdframed}\textbf{#1:}\\}{\end{mdframed}}
+
+\newcommand{\centertext}{\begin{center}}
+\newcommand{\centerend}{\end{center}}
+
+% nice ceil and floor symbols
+\usepackage{mathtools}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\renewcommand{\G}{\mathsf{G}}
+\renewcommand{\P}{\mathcal{P}}
+\renewcommand{\S}{\mathsf{S}}
+\newcommand{\K}[1][\S]{\mathsf{K}_{#1}}
+\newcommand{\B}[1][\S']{\K[\S,#1]}
+
+\newcommand{\lay}{\ell}
+\newcommand{\cf}{\mathsf{cf}}
+
+% nice <=, >=, \geslant causes errors
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+
+% min / max operators
+\renewcommand{\min}[2][]{\ensuremath{\mathsf{min_{\mathsf{#1}}}\left\{#2\right\}}}
+\renewcommand{\max}[2][]{\ensuremath{\mathsf{max_{\mathsf{#1}}}\left\{#2\right\}}}
+
+\newcommand{\Oh}{\ensuremath{\mathcal{O}}}
+\usepackage{marvosym}
+\usepackage{amssymb}
+\newcommand{\qedsymbol}{$\square$}
+
+\setlength{\emergencystretch}{0em}
+\setlength{\parskip}{0pt}

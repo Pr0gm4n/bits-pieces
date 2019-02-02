@@ -1,0 +1,87 @@
+\colorlet{ETHcolor1}{ETHc}
+\colorlet{ETHcolor2}{ETHe}
+\definecolor{green}{HTML}{009B55} % use forest green instead
+
+\input{info}
+
+% uncomment if you do not want to use a department logo
+\deplogofalse
+
+\bibliographystyle{alpha}
+
+% special modifications for using markdown
+\newcommand{\col}{\column{0.5\textwidth}}
+\newcommand{\cols}[1][]{\begin{columns}[#1]\column{0.4\textwidth}}
+\newcommand{\colsend}{\end{columns}}
+\newcommand{\colbreak}{\col}
+
+\renewcommand{\framebreak}{\pagebreak[4]}
+\newcommand{\framelinebreak}{\linebreak}
+\newcommand{\notesbreak}{}
+\newcommand{\framerule}{\vspace{2ex}\hrule\vspace{2ex}}
+\newcommand{\notesrule}{}
+
+\newcommand{\overlay}[1][+]{\begin{onlyenv}<#1>}
+\newcommand{\overlayend}{\end{onlyenv}}
+\newcommand{\overlaynext}{%
+  \overlayend%
+  \overlay%
+}
+\newcommand{\visibleoverlay}[1][+]{\begin{visibleenv}<#1>}
+\newcommand{\visibleoverlayend}{\end{visibleenv}}
+\newcommand{\visibleoverlaynext}{%
+  \visibleoverlayend%
+  \visibleoverlay%
+}
+\let\oldvisible\visible
+\renewcommand{\visible}[2][+]{\oldvisible<#1>{#2}}
+\newcommand{\uncoveroverlay}[1][+]{\begin{uncoverenv}<#1>}
+\newcommand{\uncoveroverlayend}{\end{uncoverenv}}
+\newcommand{\uncoveroverlaynext}{%
+  \uncoveroverlayend%
+  \uncoveroverlay%
+}
+
+\newcommand{\notesonly}{\overlay[0]}
+\newcommand{\notesend}{\overlayend}
+\newcommand{\notesonlyraw}[1]{}
+\newcommand{\hidenotes}{}
+\newcommand{\hidenotesend}{}
+
+\newcommand{\centertext}{\begin{center}}
+\newcommand{\centerend}{\end{center}}
+
+% nice ceil and floor symbols
+\usepackage{mathtools}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\newcommand{\G}{\mathsf{G}}
+\renewcommand{\P}{\mathcal{P}}
+\renewcommand{\S}{\mathsf{S}}
+\newcommand{\K}[1][\S]{\mathsf{K}_{#1}}
+\newcommand{\B}[1][\S']{\K[\S,#1]}
+
+\newcommand{\lay}{\ell}
+\newcommand{\cf}{\mathsf{cf}}
+
+% nice <=, >=, \geslant causes errors
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+
+% min / max operators
+\renewcommand{\min}[2][]{\ensuremath{\mathsf{min_{\mathsf{#1}}}\left\{#2\right\}}}
+\renewcommand{\max}[2][]{\ensuremath{\mathsf{max_{\mathsf{#1}}}\left\{#2\right\}}}
+
+\newcommand{\Oh}{\ensuremath{\mathcal{O}}}
+\renewcommand{\implies}{\ensuremath{\;\Rightarrow\;}}
+\usepackage{marvosym}
+
+\setlength{\emergencystretch}{0em}
+\setlength{\parskip}{0pt}
+
+\AtBeginPart{}
+\AtBeginSection{}
+\AtBeginSubsection{}
+\AtBeginSubsubsection{}

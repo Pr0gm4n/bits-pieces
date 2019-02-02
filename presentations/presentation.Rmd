@@ -1,0 +1,95 @@
+---
+date: February 2, 2019
+#abstract: |
+# reuse bibliography file from the thesis/paper
+bibliography: ../thesis/refs.bib
+biblio-title: References
+output:
+  beamer_presentation:
+    theme: ETHbeamer
+    includes:
+      in_header: header_presentation.tex
+      before_body: before_body.tex
+#      after_body: after_body.tex
+    slide_level: 2
+    fig_caption: false
+    citation_package: natbib
+    keep_tex: true
+  pdf_document:
+    includes:
+      in_header: header_notes.tex
+      before_body: before_body_notes.tex
+    fig_caption: false
+    citation_package: natbib
+    keep_tex: true
+---
+
+# Introduction
+
+\notesonly
+Hello everyone and welcome to the presentation of my thesis / paper / ... on **Presentation Title** which I devised under the joint supervision of Prof. XY and her peers at ETH Zürich: Prof. XY, Dr. XY and XY.
+\notesend
+
+## Motivation
+
+Let's showcase some animation:
+
+\centertext
+\overlay
+![some graph](figures/graph.pdf){width=6cm}
+\hidenotes
+\overlaynext
+![some graph](figures/graph_orange.pdf){width=6cm}
+\overlaynext
+![some graph](figures/graph_green.pdf){width=6cm}
+\overlaynext
+![some graph](figures/graph_blue.pdf){width=6cm}
+\overlaynext
+![some graph](figures/graph_red.pdf){width=6cm}
+\overlayend
+\hidenotesend
+\notesonlyraw{. . . . .}
+\overlay[6-]
+![some graph](figures/graph_purple.pdf){width=6cm}
+\overlayend
+\centerend
+
+Observe that every image is displayed at the same position and we obtain a smooth animation.
+
+\notesonly
+
+This is -- obviously -- only visible in the speaker notes. For technical reasons, it is advisible to make newlines before and after the '\\notesonly' statement
+
+Color order (every click uncovers one color):
+
+* orange,
+* green,
+* blue,
+* red,
+* purple.
+
+\notesend
+
+. . .
+
+$\implies$ we may use math formulas inline. Also, note the three dots causing a 'pause' requiring a click to proceed / uncover the remainder of the slide.
+
+# Main Stuff
+
+## Some Definitions / Proofs
+
+We can even use very involved / low-level \LaTeX commands by using
+
+\notesonlyraw{\framebreak}
+
+\hidenotes
+
+## Some Slide Feature {.t}
+
+Note the {.t} attribute for the slide title; however, I don't recall what it is meant for. Check out the pandoc markdown documentation!
+
+\hidenotesend
+
+## Conclusion
+
+This should be enough to showcase how simple making LaTeX slides can be with this. I'll upload the rendered output of this example as well.
