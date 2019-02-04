@@ -64,6 +64,12 @@ class Sonos:
     def mute(self):
         self.sonos.mute = not self.sonos.mute
 
+    def jazz_radio(self):
+        self.sonos.play_uri('x-rincon-mp3radio://http://54.38.43.201:8000/stream-128kmp3-101SmoothMellow')
+
+    def sleep_timer(self, duration):
+        self.sonos.set_sleep_timer(duration)
+
 
 class Cache:
     path = '/home/roland/bin/'
@@ -97,10 +103,15 @@ if __name__ == '__main__':
             Sonos().volume_down()
         elif sys.argv[1] == '--mute':
             Sonos().mute()
+        elif sys.argv[1] == '--bedtime':
+            sonos = Sonos()
+            sonos.volume = 5
+            sonos.jazz_radio()
+            sonos.sleep_timer(60*45)
         else:
             print("Usage:")
             print("    sonos.py --toggle-TV | --play | --pause | --volume-up |"
-                    + " --volume-down | --mute")
+                    + " --volume-down | --mute | --bedtime")
     else:
         print("Error: no argument given.")
         print("Try 'sonos.py --help' for usage information.")
