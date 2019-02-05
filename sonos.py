@@ -43,10 +43,10 @@ class Sonos:
         #self.sonos.volume += 5
         volume = Cache.read('.sonos_volume')
         if not volume:
-            volume = self.sonos.volume
+            volume = self.volume
         volume += 5
 
-        self.sonos.volume = volume
+        self.volume = volume
         Cache.write('.sonos_volume', volume)
 
     def volume_down(self):
@@ -55,11 +55,19 @@ class Sonos:
         #self.sonos.volume -= 3
         volume = Cache.read('.sonos_volume')
         if not volume:
-            volume = self.sonos.volume
+            volume = self.volume
         volume -= 3
 
-        self.sonos.volume = volume
+        self.volume = volume
         Cache.write('.sonos_volume', volume)
+
+    @property
+    def volume(self):
+        return self.sonos.volume
+
+    @volume.setter
+    def volume(self, volume):
+        self.sonos.volume = volume
 
     def mute(self):
         self.sonos.mute = not self.sonos.mute
