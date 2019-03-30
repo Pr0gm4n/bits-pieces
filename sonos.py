@@ -41,25 +41,25 @@ class Sonos:
         # Cache volume setting for smooth usage with repeated keyboard shortcut
         # invocations, as opposed to
         #self.sonos.volume += 5
-        volume = Cache.read('.sonos_volume')
+        volume = Cache.read('.sonos_volume_cache')
         if not volume:
             volume = self.volume
         volume += 5
 
         self.volume = volume
-        Cache.write('.sonos_volume', volume)
+        Cache.write('.sonos_volume_cache', volume)
 
     def volume_down(self):
         # Cache volume setting for smooth usage with repeated keyboard shortcut
         # invocations, as opposed to
         #self.sonos.volume -= 3
-        volume = Cache.read('.sonos_volume')
+        volume = Cache.read('.sonos_volume_cache')
         if not volume:
             volume = self.volume
         volume -= 3
 
         self.volume = volume
-        Cache.write('.sonos_volume', volume)
+        Cache.write('.sonos_volume_cache', volume)
 
     @property
     def volume(self):
@@ -86,7 +86,7 @@ class Sonos:
 
 
 class Cache:
-    path = '/home/roland/bin/'
+    path = '/tmp/'
 
     @staticmethod
     def read(filename):
