@@ -129,7 +129,7 @@ if __name__ == '__main__':
         else:
             print("Usage:")
             print("    sonos.py --toggle-TV | --play | --pause | --volume-up |"
-                    + " --volume-down | --mute | --bedtime")
+                    + " --volume-down | --mute | --next-song | --prev-song | --bedtime")
     else:
         print("Error: no argument given.")
         print("Try 'sonos.py --help' for usage information.")
