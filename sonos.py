@@ -3,6 +3,7 @@ import soco
 import pickle
 from os import path, makedirs
 import sys
+from time import time
 
 class Sonos:
     def __init__(self):
@@ -41,25 +42,25 @@ class Sonos:
         # Cache volume setting for smooth usage with repeated keyboard shortcut
         # invocations, as opposed to
         #self.sonos.volume += 5
-        volume = Cache.read('.sonos_volume_cache')
-        if not volume:
+        volume, timestamp = Cache.read('.sonos_volume_cache')
+        if not volume or time() > timestamp + 30:
             volume = self.volume
         volume += 5
 
         self.volume = volume
-        Cache.write('.sonos_volume_cache', volume)
+        Cache.write('.sonos_volume_cache', (volume, time()))
 
     def volume_down(self):
         # Cache volume setting for smooth usage with repeated keyboard shortcut
         # invocations, as opposed to
         #self.sonos.volume -= 3
-        volume = Cache.read('.sonos_volume_cache')
-        if not volume:
+        volume, timestamp = Cache.read('.sonos_volume_cache')
+        if not volume or time() > timestamp + 30:
             volume = self.volume
         volume -= 3
 
         self.volume = volume
-        Cache.write('.sonos_volume_cache', volume)
+        Cache.write('.sonos_volume_cache', (volume, time()))
 
     @property
     def volume(self):
