@@ -39,35 +39,36 @@ class Sonos:
         self.sonos.pause()
 
     def volume_up(self):
-        # Cache volume setting for smooth usage with repeated keyboard shortcut
-        # invocations, as opposed to
-        #self.sonos.volume += 5
-        volume, timestamp = Cache.read('.sonos_volume_cache')
-        if not volume or time() > timestamp + 30:
-            volume = self.volume
-        volume += 5
-
-        self.volume = volume
-        Cache.write('.sonos_volume_cache', (volume, time()))
+        self.volume += 5
 
     def volume_down(self):
-        # Cache volume setting for smooth usage with repeated keyboard shortcut
-        # invocations, as opposed to
-        #self.sonos.volume -= 3
-        volume, timestamp = Cache.read('.sonos_volume_cache')
-        if not volume or time() > timestamp + 30:
-            volume = self.volume
-        volume -= 3
-
-        self.volume = volume
-        Cache.write('.sonos_volume_cache', (volume, time()))
+        self.volume -= 3
 
     @property
     def volume(self):
-        return self.sonos.volume
+        # Cache volume setting for smooth usage with repeated keyboard shortcut
+        # invocations, as opposed to
+        cache = Cache.read('.sonos_volume_cache')
+
+        if not cache or time() > cache["timestamp"] + 30:
+            volume = self.sonos.volume
+            Cache.write('.sonos_volume_cache', {
+                "volume": volume,
+                "timestamp": time()
+            })
+        else:
+            volume = cache["volume"]
+
+        return volume
 
     @volume.setter
     def volume(self, volume):
+        # Cache volume setting for smooth usage with repeated keyboard shortcut
+        # invocations, as opposed to
+        Cache.write('.sonos_volume_cache', {
+            "volume": volume,
+            "timestamp": time()
+        })
         self.sonos.volume = volume
 
     def mute(self):
