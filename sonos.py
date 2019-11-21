@@ -16,6 +16,9 @@ class Sonos:
 
     def toggle_TV(self):
         if self.sonos.is_playing_tv:
+            # revert boosted volume
+            self.volume = 15
+
             # check previously cached mode to switch back to
             uri = Cache.read('.sonos_track_cache')
             if uri:
@@ -25,6 +28,9 @@ class Sonos:
                 #self.sonos.stop() # does not work
                 pass
         else:
+            # boost volume as line-in seems not very amplified
+            self.volume = 50
+
             # cache current mode to switch back to later
             track = self.sonos.get_current_track_info()
             if 'uri' in track:
