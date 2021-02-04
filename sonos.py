@@ -6,12 +6,12 @@ import sys
 from time import time
 
 class Sonos:
-    def __init__(self):
+    def __init__(self, name = "Rolands Zimmer"):
         url = Cache.read('.sonos_IP_cache')
         if url:
             self.sonos = soco.SoCo(url)
         else:
-            self.sonos = soco.discovery.any_soco()
+            self.sonos = soco.discovery.by_name(name)
             Cache.write('.sonos_IP_cache', self.sonos.ip_address)
 
     def toggle_TV(self):
@@ -86,6 +86,19 @@ class Sonos:
     def prev(self):
         self.sonos.previous()
 
+    def join(self, name):
+        soco.discovery.by_name(name).join(self.sonos)
+
+    def unjoin(self, name):
+        soco.discovery.by_name(name).unjoin()
+
+    def join_toggle(self, name):
+        s = soco.discovery.by_name(name)
+        if s.is_coordinator:
+            s.join(self.sonos)
+        else:
+            s.unjoin()
+
     def jazz_radio(self):
         self.sonos.play_uri('x-rincon-mp3radio://http://54.38.43.201:8000/stream-128kmp3-101SmoothMellow')
 
@@ -129,6 +142,12 @@ if __name__ == '__main__':
             Sonos().next()
         elif sys.argv[1] == '--prev-song':
             Sonos().prev()
+        elif sys.argv[1] == '--join-move':
+            Sonos().join("Move")
+        elif sys.argv[1] == '--unjoin-move':
+            Sonos().unjoin("Move")
+        elif sys.argv[1] == '--join-toggle-move':
+            Sonos().join_toggle("Move")
         elif sys.argv[1] == '--bedtime':
             sonos = Sonos()
             sonos.volume = 5
