@@ -7,12 +7,7 @@ from time import time
 
 class Sonos:
     def __init__(self, name = "Rolands Zimmer"):
-        url = Cache.read('.sonos_IP_cache')
-        if url:
-            self.sonos = soco.SoCo(url)
-        else:
-            self.sonos = soco.discovery.by_name(name)
-            Cache.write('.sonos_IP_cache', self.sonos.ip_address)
+        self.sonos = soco.discovery.by_name(name)
 
     def toggle_TV(self):
         if self.sonos.is_playing_tv:
@@ -156,7 +151,8 @@ if __name__ == '__main__':
         else:
             print("Usage:")
             print("    sonos.py --toggle-TV | --play | --pause | --volume-up |"
-                    + " --volume-down | --mute | --next-song | --prev-song | --bedtime")
+                    + " --volume-down | --mute | --next-song | --prev-song |"
+                    + " --join-move | --unjoin-move | --join-toggle-move | --bedtime")
     else:
         print("Error: no argument given.")
         print("Try 'sonos.py --help' for usage information.")
